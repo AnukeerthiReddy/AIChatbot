@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 AI Chatbot</h1>
+            <p class="subtitle">Your friendly AI assistant</p>
+        </header>
+        
+        <div class="chat-container">
+            <div id="chat-messages" class="chat-messages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <strong>Bot:</strong> Hello! I'm your AI assistant. How can I help you today?
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <input 
+                    type="text" 
+                    id="user-input" 
+                    class="chat-input" 
+                    placeholder="Type your message here..." 
+                    autocomplete="off"
+                />
+                <button id="send-btn" class="send-btn">Send</button>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button id="clear-btn" class="action-btn">Clear History</button>
+            <button id="history-btn" class="action-btn">View History</button>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
