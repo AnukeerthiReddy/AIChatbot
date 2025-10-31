@@ -76,8 +76,10 @@ def chat():
         })
     
     except Exception as e:
+        # Log error internally but don't expose details to user
+        print(f"Error in chat endpoint: {e}")
         return jsonify({
-            'error': str(e),
+            'error': 'An error occurred while processing your message',
             'status': 'error'
         }), 500
 
@@ -98,8 +100,10 @@ def clear():
             'message': 'No conversation to clear'
         })
     except Exception as e:
+        # Log error internally but don't expose details to user
+        print(f"Error in clear endpoint: {e}")
         return jsonify({
-            'error': str(e),
+            'error': 'An error occurred while clearing conversation',
             'status': 'error'
         }), 500
 
@@ -120,8 +124,10 @@ def history():
             'status': 'success'
         })
     except Exception as e:
+        # Log error internally but don't expose details to user
+        print(f"Error in history endpoint: {e}")
         return jsonify({
-            'error': str(e),
+            'error': 'An error occurred while loading history',
             'status': 'error'
         }), 500
 
@@ -131,5 +137,6 @@ if __name__ == '__main__':
     os.makedirs('templates', exist_ok=True)
     os.makedirs('static', exist_ok=True)
     
-    # Run the app
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Run the app (debug mode should be disabled in production)
+    debug_mode = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
+    app.run(debug=debug_mode, host='0.0.0.0', port=5000)

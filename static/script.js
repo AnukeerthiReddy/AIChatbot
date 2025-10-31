@@ -12,7 +12,15 @@ function addMessage(role, content) {
     
     const messageContent = document.createElement('div');
     messageContent.className = 'message-content';
-    messageContent.innerHTML = `<strong>${role === 'user' ? 'You' : 'Bot'}:</strong> ${content}`;
+    
+    // Create elements safely to prevent XSS
+    const strong = document.createElement('strong');
+    strong.textContent = role === 'user' ? 'You:' : 'Bot:';
+    
+    const textNode = document.createTextNode(' ' + content);
+    
+    messageContent.appendChild(strong);
+    messageContent.appendChild(textNode);
     
     messageDiv.appendChild(messageContent);
     chatMessages.appendChild(messageDiv);
